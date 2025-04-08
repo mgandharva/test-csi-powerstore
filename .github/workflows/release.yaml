@@ -57,4 +57,5 @@ jobs:
     name: Release CSM Drivers and Modules
     with:
       version: "${{ needs.process-inputs.outputs.set-version.outputs.versionEnv }}"
+      images: 'csi-powerstore'
     secrets: inherit
