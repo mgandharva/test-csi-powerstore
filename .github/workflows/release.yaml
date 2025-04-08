@@ -23,6 +23,8 @@ jobs:
   process-inputs:
     name: Process Inputs
     runs-on: ubuntu-latest
+    outputs:
+      processedVersion: ${{ steps.set-version.outputs.versionEnv }}
     steps:
       - name: Process input
         id: set-version
@@ -30,7 +32,7 @@ jobs:
         run: |
           if [[ "${{ github.event.inputs.version }}" != "" && "${{ github.event.inputs.option }}" == "n-1/n-2 patch (Provide input in the below box)" ]]; then
             # if both version and option are provided, then version takes precedence i.e. patch release for n-1/n-2
-            echo "versionEnv=v${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+            echo "versionEnv=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
             echo $versionEnv
             exit 0
           fi
